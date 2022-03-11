@@ -6,12 +6,6 @@ import Header from "./Header/Header";
 import EmotionItem from "./EmotionItem";
 import { emotionList } from "../api/EmotionList/emotionList";
 
-import emotion1 from "../Images/emotion1.png";
-import emotion2 from "../Images/emotion2.png";
-import emotion3 from "../Images/emotion3.png";
-import emotion4 from "../Images/emotion4.png";
-import emotion5 from "../Images/emotion5.png";
-
 import { DiaryDispatchContext } from "../App";
 
 const getStringDate = (date) => {
