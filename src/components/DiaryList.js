@@ -21,7 +21,7 @@ const ControlMenu = ({ value, onChange, optionList }) => {
 };
 
 const sortOptionList = [
-  { value: "latest", name: "최신 순" },
+  { value: "lastest", name: "최신 순" },
   { value: "oldest", name: "오래된 순" },
 ];
 
@@ -47,7 +47,7 @@ const DiaryList = ({ diaryList }) => {
     };
 
     const compare = (a, b) => {
-      if (sortType === "latest") {
+      if (sortType === "lastest") {
         return parseInt(b.date) - parseInt(a.date);
       } else {
         return parseInt(a.date) - parseInt(b.date);

@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import New from "./pages/New/New";
 import Edit from "./pages/Edit/Edit";
-import Diary from "./pages/Diary/Diary";
+import DiaryDetail from "./pages/DiaryDetail/DiaryDetail";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -73,7 +73,7 @@ const dummyData = [
 function App() {
   const [data, dispatch] = useReducer(reducer, dummyData);
 
-  const dataId = useRef(0);
+  const dataId = useRef(6);
 
   // CREATE
   const onCreate = (date, content, emotion) => {
@@ -115,8 +115,8 @@ function App() {
             <Routes>
               <Route path={"/"} element={<Home />} />
               <Route path={"/new"} element={<New />} />
-              <Route path={"/edit"} element={<Edit />} />
-              <Route path={"/diary/:id"} element={<Diary />} />
+              <Route path={"/edit/:id"} element={<Edit />} />
+              <Route path={"/diary/:id"} element={<DiaryDetail />} />
             </Routes>
           </div>
         </BrowserRouter>
