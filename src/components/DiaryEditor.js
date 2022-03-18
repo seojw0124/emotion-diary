@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "./Button/Button";
@@ -19,9 +19,9 @@ const DiaryEditor = ({ isEdit, originData }) => {
   const { onCreate, onEdit, onRemove } = useContext(DiaryDispatchContext);
   const contentRef = useRef();
 
-  const handleClickEmotion = (emotion) => {
+  const handleClickEmotion = useCallback((emotion) => {
     setEmotion(emotion);
-  };
+  }, []);
 
   const handleSubmit = () => {
     if (content.length < 1) {
@@ -82,9 +82,9 @@ const DiaryEditor = ({ isEdit, originData }) => {
         <section>
           <h4>오늘의 감정</h4>
           <div className="input_box emotion_list_wrapper">
-            {emotionList.map((it, id) => (
+            {emotionList.map((it) => (
               <EmotionItem
-                key={id}
+                key={it.id}
                 {...it}
                 onClick={handleClickEmotion}
                 isSelected={it.id === emotion}

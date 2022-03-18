@@ -1,24 +1,27 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "./Button/Button";
 import DiaryItem from "./DiaryItem";
 
-const ControlMenu = ({ value, onChange, optionList }) => {
+const ControlMenu = React.memo(({ value, onChange, optionList }) => {
+  useEffect(() => {
+    console.log("Control Menu render");
+  });
   return (
     <select
       className="ControlMenu"
       value={value}
       onChange={(e) => onChange(e.target.value)}
     >
-      {optionList.map((it, id) => (
-        <option value={it.value} key={id}>
+      {optionList.map((it) => (
+        <option value={it.value} key={it.id}>
           {it.name}
         </option>
       ))}
     </select>
   );
-};
+});
 
 const sortOptionList = [
   { value: "lastest", name: "최신 순" },
@@ -36,6 +39,18 @@ const DiaryList = ({ diaryList }) => {
 
   const [sortType, setSortType] = useState("lastest");
   const [filter, setFilter] = useState("all");
+
+  /*
+  밑에 처럼 따로 함수를 선언하면 렌더링이 됨. 굳이 따로 선언할 필요 없는 경우에는
+  상태변화 함수 그 자체를 내려주면 조금 더 편하게 최적화할 수 있음
+
+  const handleSetSortType = (sortType) => {
+    setSortType(sortType);
+  };
+  const handleSetFilter = (filter) => {
+    setSortType(filter);
+  };
+  */
 
   const getProcessedDiaryList = () => {
     const filterCallback = (item) => {
@@ -86,8 +101,8 @@ const DiaryList = ({ diaryList }) => {
           />
         </div>
       </div>
-      {getProcessedDiaryList().map((it, id) => (
-        <DiaryItem key={id} {...it} />
+      {getProcessedDiaryList().map((it) => (
+        <DiaryItem key={it.id} {...it} />
       ))}
     </div>
   );
