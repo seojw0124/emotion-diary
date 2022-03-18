@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "./Button/Button";
@@ -7,6 +8,7 @@ import emotion2 from "../Images/emotion2.png";
 import emotion3 from "../Images/emotion3.png";
 import emotion4 from "../Images/emotion4.png";
 import emotion5 from "../Images/emotion5.png";
+import { getStringDate } from "../util/date";
 
 const EmotionImg = (emotion) => {
   switch (emotion) {
@@ -61,4 +63,4 @@ const DiaryItem = ({ id, emotion, content, date }) => {
   );
 };
 
-export default DiaryItem;
+export default React.memo(DiaryItem);

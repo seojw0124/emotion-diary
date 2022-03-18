@@ -17,6 +17,11 @@ const Home = () => {
   }월`;
 
   useEffect(() => {
+    const titleElement = document.getElementsByTagName("title")[0];
+    titleElement.innerHTML = `감정 일기장`;
+  });
+
+  useEffect(() => {
     if (diaryList.length >= 1) {
       const firstDate = new Date(
         currentDate.getFullYear(),
@@ -70,6 +75,8 @@ const Home = () => {
         rightChild={<StyledButton text={">"} onClick={increaseMonth} />}
       />
       <DiaryList diaryList={data} />
+      {/* 위에 Header에서 decreaseMonth 라는 상태
+      변화 함수 때문에 Home 컴포넌트의 state가 변함. -> 자식 컴포넌트인 DiaryList도 랜더링됨.*/}
     </div>
   );
 };
