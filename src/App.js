@@ -48,9 +48,12 @@ function App() {
       const localDiaryList = JSON.parse(localData).sort(
         (a, b) => parseInt(b.id) - parseInt(a.id)
       );
-      dataId.current = parseInt(localDiaryList[0].id) + 1; // 이미 존재하는 일기의 id값 + 1
 
-      dispatch({ type: "INIT", data: localDiaryList });
+      if (localDiaryList.length >= 1) {
+        // 빌드할 때 key가 빈 배열일 때 밑에 있는 id 값을 불러오지 못해서 버그가 생김.
+        dataId.current = parseInt(localDiaryList[0].id) + 1; // 이미 존재하는 일기의 id값 + 1
+        dispatch({ type: "INIT", data: localDiaryList });
+      }
     }
   }, []);
 

@@ -40,7 +40,7 @@ const DiaryItem = ({ id, emotion, content, date }) => {
     navigate(`/edit/${id}`);
   };
 
-  const strDate = getStringDate(new Date(parseInt(date)));
+  const strDate = new Date(parseInt(date)).toLocaleDateString();
 
   return (
     <div className="DiaryItem">
