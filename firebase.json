@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "jade-diary-project",
     "public": "build",
     "ignore": [
       "firebase.json",

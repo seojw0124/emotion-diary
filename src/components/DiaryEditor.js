@@ -23,7 +23,11 @@ const DiaryEditor = ({ isEdit, originData }) => {
     setEmotion(emotion);
   }, []);
 
-  const handleSubmit = () => {
+  const handleGoBack = useCallback(() => {
+    navigate(-1);
+  }, []);
+
+  const handleSubmit = useCallback(() => {
     if (content.length < 1) {
       contentRef.current.focus();
       return;
@@ -39,7 +43,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
     }
 
     navigate("/", { replace: true });
-  };
+  }, [content.length]);
 
   useEffect(() => {
     if (isEdit) {
@@ -49,18 +53,18 @@ const DiaryEditor = ({ isEdit, originData }) => {
     }
   }, [isEdit, originData]);
 
-  const handleRemove = () => {
+  const handleRemove = useCallback(() => {
     if (window.confirm("정말 삭제하시겠습니까?")) {
       onRemove(originData.id);
       navigate("/", { replace: true });
     }
-  };
+  }, []);
 
   return (
     <div className="DiaryEditor">
       <Header
         headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
-        leftChild={<Button text={"< 뒤로가기"} onClick={() => navigate(-1)} />}
+        leftChild={<Button text={"< 뒤로가기"} onClick={handleGoBack} />}
         rightChild={
           isEdit && (
             <Button text="삭제하기" type={"negative"} onClick={handleRemove} />
@@ -105,7 +109,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
         </section>
         <section>
           <div className="control_box">
-            <Button text={"취소하기"} onClick={() => navigate(-1)} />
+            <Button text={"취소하기"} onClick={handleGoBack} />
             <Button
               text={"작성완료"}
               type={"positive"}
