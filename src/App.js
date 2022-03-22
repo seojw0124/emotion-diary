@@ -1,4 +1,4 @@
-import React, { useReducer, useRef } from "react";
+import React, { useEffect, useReducer, useRef } from "react";
 
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import New from "./pages/New/New";
 import Edit from "./pages/Edit/Edit";
-import Diary from "./pages/Diary/Diary";
+import DiaryDetail from "./pages/DiaryDetail/DiaryDetail";
 
 const reducer = (state, action) => {
   let newState = [];
@@ -18,8 +18,9 @@ const reducer = (state, action) => {
       newState = [action.data, ...state];
       break;
     }
-    case "ReMOVE": {
+    case "REMOVE": {
       newState = state.filter((it) => it.id !== action.targetId);
+      console.log(newState);
       break;
     }
     case "EDIT": {
@@ -31,50 +32,32 @@ const reducer = (state, action) => {
     default:
       return state;
   }
+  localStorage.setItem("diary", JSON.stringify(newState));
   return newState;
 };
 
 export const DiaryStateContext = React.createContext();
 export const DiaryDispatchContext = React.createContext();
 
-const dummyData = [
-  {
-    id: 1,
-    emotion: 1,
-    content: "오늘의 일기 1번",
-    date: 1646417027934,
-  },
-  {
-    id: 2,
-    emotion: 2,
-    content: "오늘의 일기 2번",
-    date: 1646417027935,
-  },
-  {
-    id: 3,
-    emotion: 3,
-    content: "오늘의 일기 3번",
-    date: 1646417027936,
-  },
-  {
-    id: 4,
-    emotion: 4,
-    content: "오늘의 일기 4번",
-    date: 1646417027937,
-  },
-  {
-    id: 5,
-    emotion: 5,
-    content: "오늘의 일기 5번",
-    date: 1646417027938,
-  },
-];
-
 function App() {
-  const [data, dispatch] = useReducer(reducer, dummyData);
+  const [data, dispatch] = useReducer(reducer, []);
+
+  useEffect(() => {
+    const localData = localStorage.getItem("diary");
+    if (localData) {
+      const localDiaryList = JSON.parse(localData).sort(
+        (a, b) => parseInt(b.id) - parseInt(a.id)
+      );
+
+      if (localDiaryList.length >= 1) {
+        // 빌드할 때 key가 빈 배열일 때 밑에 있는 id 값을 불러오지 못해서 버그가 생김.
+        dataId.current = parseInt(localDiaryList[0].id) + 1; // 이미 존재하는 일기의 id값 + 1
+        dispatch({ type: "INIT", data: localDiaryList });
+      }
+    }
+  }, []);
 
   const dataId = useRef(0);
-
   // CREATE
   const onCreate = (date, content, emotion) => {
     dispatch({
@@ -115,8 +98,8 @@ function App() {
             <Routes>
               <Route path={"/"} element={<Home />} />
               <Route path={"/new"} element={<New />} />
-              <Route path={"/edit"} element={<Edit />} />
-              <Route path={"/diary/:id"} element={<Diary />} />
+              <Route path={"/edit/:id"} element={<Edit />} />
+              <Route path={"/diary/:id"} element={<DiaryDetail />} />
             </Routes>
           </div>
         </BrowserRouter>

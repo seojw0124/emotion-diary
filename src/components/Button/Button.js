@@ -1,4 +1,6 @@
-const StyledButton = ({ text, type, onClick }) => {
+import React from "react";
+
+const Button = ({ text, type, onClick }) => {
   const btnType = ["positive", "negative"].includes(type) ? type : "default";
 
   return (
@@ -11,8 +13,8 @@ const StyledButton = ({ text, type, onClick }) => {
   );
 };
 
-StyledButton.defaultProps = {
+Button.defaultProps = {
   type: "default",
 };
 
-export default StyledButton;
+export default React.memo(Button);
