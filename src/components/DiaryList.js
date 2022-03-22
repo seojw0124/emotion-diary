@@ -5,9 +5,6 @@ import Button from "./Button/Button";
 import DiaryItem from "./DiaryItem";
 
 const ControlMenu = React.memo(({ value, onChange, optionList }) => {
-  useEffect(() => {
-    console.log("Control Menu render");
-  });
   return (
     <select
       className="ControlMenu"
