@@ -28,7 +28,7 @@ const sortOptionList = [
 const filterOptionList = [
   { value: "all", name: "전부 다" },
   { value: "good", name: "좋은 감정만" },
-  { value: "bad", name: "안좋은 감정만" },
+  { value: "bad", name: "안 좋은 감정만" },
 ];
 
 const DiaryList = ({ diaryList }) => {
