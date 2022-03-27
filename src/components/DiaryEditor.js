@@ -29,6 +29,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
   }, []);
 
   const handleSubmit = useCallback(() => {
+    // useCallback(callback,[content.length, emotion]) 해주면 안하는 거랑 차이 없음.
     if (content.length < 1) {
       contentRef.current.focus();
       return;
@@ -44,7 +45,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
     }
 
     navigate("/", { replace: true });
-  }, [content.length]);
+  }, [content.length, emotion]);
 
   useEffect(() => {
     if (isEdit) {
