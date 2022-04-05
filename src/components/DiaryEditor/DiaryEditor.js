@@ -1,14 +1,24 @@
 import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Button from "./Button/Button";
-import Header from "./Header/Header";
-import EmotionItem from "./EmotionItem";
-import { emotionList } from "../api/EmotionList/emotionList";
+import {
+  DiaryEditorWrapper,
+  DiaryTodayDate,
+  EmotionListWrapper,
+  DiaryContent,
+  BottomButtonContainer,
+  DiaryTodayDateWrapper,
+  DiaryContentWrapper,
+  DiaryEditorInner,
+} from "./styled";
+import Button from "../Button/Button";
+import Header from "../Header/Header";
+import EmotionItem from "../EmotionItem/EmotionItem";
+import { emotionList } from "../../api/EmotionList/emotionList";
 
-import { getStringDate } from "../utils/date";
+import { getStringDate } from "../../utils/date";
 
-import { DiaryDispatchContext } from "../App";
+import { DiaryDispatchContext } from "../../App";
 
 const DiaryEditor = ({ isEdit, originData }) => {
   const navigate = useNavigate();
@@ -45,7 +55,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
     }
 
     navigate("/", { replace: true });
-  }, [content.length, emotion]);
+  }, [content.length, emotion, date]);
 
   useEffect(() => {
     if (isEdit) {
@@ -63,7 +73,7 @@ const DiaryEditor = ({ isEdit, originData }) => {
   }, []);
 
   return (
-    <div className="DiaryEditor">
+    <DiaryEditorWrapper>
       <Header
         headText={isEdit ? "일기 수정하기" : "새 일기쓰기"}
         leftChild={<Button text={"< 뒤로가기"} onClick={handleGoBack} />}
@@ -73,21 +83,20 @@ const DiaryEditor = ({ isEdit, originData }) => {
           )
         }
       />
-      <div>
+      <DiaryEditorInner>
         <section>
           <h4>오늘은 언제인가요?</h4>
-          <div className="input_box">
-            <input
-              className="input_date"
+          <DiaryTodayDateWrapper>
+            <DiaryTodayDate
               type="date"
               value={date}
               onChange={(e) => setDate(e.target.value)}
             />
-          </div>
+          </DiaryTodayDateWrapper>
         </section>
         <section>
           <h4>오늘의 감정</h4>
-          <div className="input_box emotion_list_wrapper">
+          <EmotionListWrapper>
             {emotionList.map((it) => (
               <EmotionItem
                 key={it.id}
@@ -96,31 +105,31 @@ const DiaryEditor = ({ isEdit, originData }) => {
                 isSelected={it.id === emotion}
               />
             ))}
-          </div>
+          </EmotionListWrapper>
         </section>
         <section>
           <h4>오늘의 일기</h4>
-          <div className="input_box text_wrapper">
-            <textarea
+          <DiaryContentWrapper>
+            <DiaryContent
               ref={contentRef}
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="오늘은 어땠나요"
             />
-          </div>
+          </DiaryContentWrapper>
         </section>
         <section>
-          <div className="control_box">
+          <BottomButtonContainer>
             <Button text={"취소하기"} onClick={handleGoBack} />
             <Button
               text={"작성완료"}
               type={"positive"}
               onClick={handleSubmit}
             />
-          </div>
+          </BottomButtonContainer>
         </section>
-      </div>
-    </div>
+      </DiaryEditorInner>
+    </DiaryEditorWrapper>
   );
 };
 

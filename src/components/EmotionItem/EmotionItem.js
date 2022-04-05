@@ -1,5 +1,7 @@
 import React from "react";
 
+import { EmotionItemWrapper } from "./styled";
+
 const EmotionItem = ({
   id,
   emotion_img,
@@ -9,16 +11,16 @@ const EmotionItem = ({
   isSelected,
 }) => {
   return (
-    <div
-      className={[
-        "EmotionItem",
-        isSelected ? `EmotionItem_on_${id}` : `EmotionItem_off`,
-      ].join(" ")}
-      onClick={() => onClick(id)}
-    >
-      <img src={emotion_img} />
-      <span>{emotion_descript}</span>
-    </div>
+    <>
+      <EmotionItemWrapper
+        isSelected={isSelected}
+        id={id}
+        onClick={() => onClick(id)}
+      >
+        <img src={emotion_img} />
+        <span>{emotion_descript}</span>
+      </EmotionItemWrapper>
+    </>
   );
 };
 

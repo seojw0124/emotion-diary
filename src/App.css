@@ -32,38 +32,8 @@ body {
   padding-left: 20px;
   padding-right: 20px;
 }
-
-/* StyledButton */
-
-.StyledButton {
-  cursor: pointer;
-  border: none;
-  border-radius: 5px;
-
-  padding: 10px 20px 10px 20px;
-
-  font-size: 18px;
-
-  white-space: nowrap;
-  font-family: "Nanum Pen Script";
-}
-
-.StyledButton_default {
-  background: #ececec;
-  color: black;
-}
-
-.StyledButton_positive {
-  background: #64c964;
-  color: white;
-}
-
-.StyledButton_negative {
-  background: #fd565f;
-  color: white;
-}
-
-/* HEADER */
+/*
+!* HEADER *!
 
 header {
   padding-top: 20px;
@@ -97,8 +67,9 @@ header .head_btn_right {
 header button {
   font-family: "Nanum Pen Script";
 }
+*/
 
-/* DiaryList */
+/*!* DiaryList *!
 
 .DiaryList .menu_wrapper{
   margin-top: 20px;
@@ -126,9 +97,9 @@ header button {
   cursor: pointer;
   font-family: "Nanum Pen Script";
   font-size: 18px;
-}
+}*/
 
-/* DiaryItem */
+/*!* DiaryItem *!
 .DiaryItem {
   padding-top: 15px;
   padding-bottom: 15px;
@@ -178,11 +149,11 @@ header button {
 }
 .DiaryItem .btn_wraper {
   min-width: 70px;
-}
+}*/
 
 /* DiaryEditor */
 
-.DiaryEditor {
+/*.DiaryEditor {
 
 }
 .DiaryEditor section {
@@ -214,7 +185,7 @@ header button {
   box-sizing: border-box;
   width: 100%;
   min-height: 200px;
-  resize: vertical; /* 위아래로만 사이즈 조절 가능 */
+  resize: vertical; !* 위아래로만 사이즈 조절 가능 *!
   border: none;
   border-radius: 5px;
   background: #ececec;
@@ -224,9 +195,9 @@ header button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
+}*/
 
-/* EmotionItem */
+/*!* EmotionItem *!
 
 .EmotionItem {
   cursor: pointer;
@@ -269,10 +240,11 @@ header button {
 .EmotionItem_on_5 {
   background: #fd565f;
   color: white;
-}
+}*/
 
 /* DiaryDetail */
 
+/*
 .DiaryDetail {
 
 }
@@ -332,4 +304,4 @@ header button {
   font-family: "Yeon Sung";
   font-weight: 400;
   line-height: 2.5;
-}
+}*/

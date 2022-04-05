@@ -2,6 +2,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { DiaryStateContext } from "../../App";
 
+import {
+  DiaryDetailWrapper,
+  EmotionWrapper,
+  EmotionDescript,
+  DetailContentWrapper,
+} from "./styled";
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
 import { getStringDate } from "../../utils/date";
@@ -41,7 +47,7 @@ const DiaryDetail = () => {
     console.log(detailEmotionData);
 
     return (
-      <div className="DiaryDetail">
+      <DiaryDetailWrapper>
         <Header
           headText={`${getStringDate(new Date(detailData.date))} 기록`}
           leftChild={<Button text={"<뒤로가기"} onClick={() => navigate(-1)} />}
@@ -55,26 +61,21 @@ const DiaryDetail = () => {
         <article>
           <section>
             <h4>오늘의 감정</h4>
-            <div
-              className={[
-                "diary_img_wrapper",
-                `diary_img_wrapper_${detailData.emotion}`,
-              ].join(" ")}
-            >
+            <EmotionWrapper detailEmotion={detailEmotionData.id}>
               <img src={detailEmotionData.emotion_img} />
-              <div className="emotion_descript">
+              <EmotionDescript>
                 {detailEmotionData.emotion_descript}
-              </div>
-            </div>
+              </EmotionDescript>
+            </EmotionWrapper>
           </section>
           <section>
             <h4>오늘의 일기</h4>
-            <div className="diary_content_wrapper">
+            <DetailContentWrapper>
               <p>{detailData.content}</p>
-            </div>
+            </DetailContentWrapper>
           </section>
         </article>
-      </div>
+      </DiaryDetailWrapper>
     );
   }
 };

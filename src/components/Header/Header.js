@@ -1,12 +1,18 @@
 import React from "react";
+import {
+  StyledHeader,
+  HeaderText,
+  HeaderBtnLeft,
+  HeaderBtnRight,
+} from "./styled";
 
 const Header = ({ headText, leftChild, rightChild }) => {
   return (
-    <header>
-      <div className="head_btn_left">{leftChild}</div>
-      <div className="head_text">{headText}</div>
-      <div className="head_btn_right">{rightChild}</div>
-    </header>
+    <StyledHeader>
+      <HeaderBtnLeft>{leftChild}</HeaderBtnLeft>
+      <HeaderText>{headText}</HeaderText>
+      <HeaderBtnRight>{rightChild}</HeaderBtnRight>
+    </StyledHeader>
   );
 };
 

@@ -1,4 +1,4 @@
-import DiaryEditor from "../../components/DiaryEditor";
+import DiaryEditor from "../../components/DiaryEditor/DiaryEditor";
 import { useEffect } from "react";
 
 const New = () => {

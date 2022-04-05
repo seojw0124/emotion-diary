@@ -1,15 +1,15 @@
 import React from "react";
+import { StyledButton } from "./styled";
 
 const Button = ({ text, type, onClick }) => {
   const btnType = ["positive", "negative"].includes(type) ? type : "default";
 
   return (
-    <button
-      className={["StyledButton", `StyledButton_${btnType}`].join(" ")}
-      onClick={onClick}
-    >
-      {text}
-    </button>
+    <>
+      <StyledButton btnType={btnType} onClick={onClick}>
+        {text}
+      </StyledButton>
+    </>
   );
 };
 

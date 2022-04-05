@@ -4,7 +4,7 @@ import { DiaryStateContext } from "../../App";
 
 import Header from "../../components/Header/Header";
 import StyledButton from "../../components/Button/Button";
-import DiaryList from "../../components/DiaryList";
+import DiaryList from "../../components/DiaryList/DiaryList";
 
 const Home = () => {
   const diaryList = useContext(DiaryStateContext);

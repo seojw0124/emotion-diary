@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Button from "./Button/Button";
-import DiaryItem from "./DiaryItem";
+import {
+  DiaryListMenuWrapper,
+  DiaryListSortMenu,
+  NewDiaryMenu,
+} from "./styled";
+import Button from "../Button/Button";
+import DiaryItem from "../DiaryItem/DiaryItem";
 
 const ControlMenu = React.memo(({ value, onChange, optionList }) => {
   return (
@@ -76,10 +81,11 @@ const DiaryList = ({ diaryList }) => {
   };
 
   return (
-    <div className="DiaryList">
-      <div className="menu_wrapper">
-        <div className="left_col">
+    <>
+      <DiaryListMenuWrapper>
+        <DiaryListSortMenu>
           <ControlMenu
+            clossName="ControlMenu"
             value={sortType}
             onChange={setSortType}
             optionList={sortOptionList}
@@ -89,19 +95,19 @@ const DiaryList = ({ diaryList }) => {
             onChange={setFilter}
             optionList={filterOptionList}
           />
-        </div>
-        <div className="right_col">
+        </DiaryListSortMenu>
+        <NewDiaryMenu>
           <Button
             type={"positive"}
             text={"새 일기쓰기"}
             onClick={() => navigate("/new")}
           />
-        </div>
-      </div>
+        </NewDiaryMenu>
+      </DiaryListMenuWrapper>
       {getProcessedDiaryList().map((it) => (
         <DiaryItem key={it.id} {...it} />
       ))}
-    </div>
+    </>
   );
 };
 
