@@ -4,7 +4,7 @@ import { DiaryStateContext } from "../../App";
 
 import Header from "../../components/Header/Header";
 import Button from "../../components/Button/Button";
-import { getStringDate } from "../../util/date";
+import { getStringDate } from "../../utils/date";
 import { emotionList } from "../../api/EmotionList/emotionList";
 
 const DiaryDetail = () => {

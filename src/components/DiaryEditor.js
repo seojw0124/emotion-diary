@@ -6,7 +6,7 @@ import Header from "./Header/Header";
 import EmotionItem from "./EmotionItem";
 import { emotionList } from "../api/EmotionList/emotionList";
 
-import { getStringDate } from "../util/date";
+import { getStringDate } from "../utils/date";
 
 import { DiaryDispatchContext } from "../App";
 
